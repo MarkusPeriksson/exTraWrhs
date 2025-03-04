@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="exTraWrhs.Views.MainView"
+             xmlns:vm="clr-namespace:exTraWrhs.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="vm:MainViewModel"
+             BackgroundColor="WhiteSmoke"
+             xmlns:model="clr-namespace:exTraWrhs.Models">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ListView ItemsSource="{Binding MenuItems}"
+              RowHeight="130"
+              SeparatorVisibility="None"
+              SelectionMode="Single"       
+              SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:MainMenuModel">
+                <ViewCell>
+                    <Border Background="#BFB5B0"                                                                            
+                            StrokeShape="RoundRectangle 20,20,20,20"                            
+                            StrokeThickness="0.5"
+                            Margin="5,5,5,5">
+                        <Grid Padding="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"  />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Text="{Binding Naziv}"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"                                   
+                                   HorizontalOptions="Start"/>
+                            <Image Grid.Row="2"
+                                   Source="{Binding Logo}"                               
+                                   HeightRequest="30"
+                                   WidthRequest="30"
+                                   Aspect="AspectFill"
+                                   HorizontalOptions="Start" />
+                            <ImageButton Grid.Row="1"
+                                         Source="right.png"
+                                         HorizontalOptions="End"
+                                         HeightRequest="30"
+                                         WidthRequest="30"
+                                         Command="{Binding .}"
+                                         />
+                        </Grid>
+                    </Border>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Behaviors>
+            <toolkit:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding ItemSelectedCommand}"                
+                EventArgsConverter="{StaticResource SelectedItemEventArgsConverter}" />
+        </ListView.Behaviors>
+    </ListView>     
+</ContentPage>
