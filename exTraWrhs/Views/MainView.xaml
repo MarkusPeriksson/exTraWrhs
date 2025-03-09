@@ -23,7 +23,7 @@
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="model:MainMenuModel">
                 <ViewCell>
-                    <Border Background="#BFB5B0"                                                                            
+                    <Border Background="#FFB4A2"                                                                            
                             StrokeShape="RoundRectangle 20,20,20,20"                            
                             StrokeThickness="0.5"
                             Margin="5,5,5,5">
@@ -52,7 +52,8 @@
                                          HorizontalOptions="End"
                                          HeightRequest="30"
                                          WidthRequest="30"
-                                         Command="{Binding .}"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=ItemSelectedCommand}"
+                                         CommandParameter="{Binding .}"
                                          />
                         </Grid>
                     </Border>

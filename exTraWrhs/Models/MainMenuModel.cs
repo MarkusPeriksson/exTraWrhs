@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using exTraWrhs.Services.Navigation;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,5 @@ namespace exTraWrhs.Models
     {
         public string Naziv { get; set; }        
         public string Logo { get; set; }
-        //public ICommand SelectedItem
-        //{
-        //    get;
-        //    set
-        //    {
-                
-        //    }
-        //}
     }
 }
